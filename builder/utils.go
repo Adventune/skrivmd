@@ -5,12 +5,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gomarkdown/markdown"
-	"github.com/gomarkdown/markdown/html"
-	"github.com/gomarkdown/markdown/parser"
 	"github.com/rs/zerolog/log"
 )
 
+// Get all markdown files in the content directory.
 func getContentFiles(contentPath string) []string {
 	// Traverse the content directory and return a list of paths
 	paths := []string{}
@@ -23,6 +21,7 @@ func getContentFiles(contentPath string) []string {
 	return paths
 }
 
+// Custom walk function to visit all markdown files in the content directory.
 func visit(paths *[]string) filepath.WalkFunc {
 	return func(path string, f os.FileInfo, err error) error {
 		if err != nil {
@@ -41,21 +40,7 @@ func visit(paths *[]string) filepath.WalkFunc {
 	}
 }
 
-// Converts markdown elements to raw unstyled HTML.
-func mdToHTML(md []byte) []byte {
-	// create markdown parser with extensions
-	extensions := parser.CommonExtensions | parser.AutoHeadingIDs | parser.NoEmptyLineBeforeBlock
-	p := parser.NewWithExtensions(extensions)
-	doc := p.Parse(md)
-
-	// create HTML renderer with extensions
-	htmlFlags := html.CommonFlags | html.HrefTargetBlank
-	opts := html.RendererOptions{Flags: htmlFlags}
-	renderer := html.NewRenderer(opts)
-
-	return markdown.Render(doc, renderer)
-}
-
+// Get the folder where the content file should be built.
 func getBuildPath(mdFilePath string) (string, error) {
 	if filepath.IsAbs(mdFilePath) {
 		relPath, err := filepath.Rel(wd, mdFilePath)
@@ -80,7 +65,7 @@ func getBuildPath(mdFilePath string) (string, error) {
 	return outputDir, nil
 }
 
-// Cleans empty directories in the build directory
+// Cleans empty directories in the build directory.
 func cleanEmptyDirs() {
 	// Walk the build directory and remove empty directories
 	filepath.Walk(CONTENT_BUILD_DIR, func(path string, info os.FileInfo, err error) error {
