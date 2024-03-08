@@ -1,10 +1,14 @@
+<center>
+
 # SkrivMD
 
-| :warning: This project is WIP!                           |
-| -------------------------------------------------------- |
-| Any documantation is meant for my personal planning only |
+| :warning: :warning: This project is WIP! :warning: :warning: |
+| ------------------------------------------------------------ |
+| Any documentation is meant for my personal planning only     |
 
 Markdown-powered static blogging - Written in Golang.
+
+</center>
 
 ## Usage
 
