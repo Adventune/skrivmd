@@ -1,4 +1,4 @@
-<center>
+<div align="center">
 
 # SkrivMD
 
@@ -8,7 +8,7 @@
 
 Markdown-powered static blogging - Written in Golang.
 
-</center>
+</div>
 
 ## Usage
 
