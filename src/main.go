@@ -15,6 +15,7 @@ var (
 	contentPath string
 	debug       bool
 	noWatch     bool
+	buildOnly   bool
 )
 
 func main() {
@@ -23,9 +24,10 @@ func main() {
 	log.Info().Msg("Starting...")
 
 	// Command line flags
-	debugF := flag.Bool("debug", false, "Sets log level to debug")
-	contentPathF := flag.String("content", "./content", "Path to the content directory")
-	noWatchF := flag.Bool("nowatch", false, "Disable the content watcher")
+	flag.BoolVar(&debug, "debug", false, "Sets log level to debug")
+	flag.StringVar(&contentPath, "content", "./content", "Path to the content directory")
+	flag.BoolVar(&noWatch, "no-watch", false, "Disable the content watcher")
+	flag.BoolVar(&buildOnly, "build-only", false, "Build the content and exit")
 	flag.Parse()
 
 	wd, err := os.Getwd()
@@ -33,17 +35,20 @@ func main() {
 		log.Fatal().Err(err).Msg("Failed to get working directory")
 	}
 
-	// Set the global variables
-	debug = *debugF
-	contentPath = *contentPathF
-	noWatch = *noWatchF
-
 	// Set the log level
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	if debug {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	}
 	log.Debug().Msg("Debug logging has been enabled")
+
+	// If build only flag is set, build the content and exit
+	if buildOnly {
+		builder.Init(contentPath, wd, true)
+		builder.Build()
+		log.Info().Msg("Build only flag is set. Exiting...")
+		return
+	}
 
 	// Initialize the builder
 	builder.Init(contentPath, wd, noWatch)
