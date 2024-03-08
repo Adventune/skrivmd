@@ -28,6 +28,9 @@ func Init(contentPathI, wdI string, noWatch bool) {
 	if !noWatch {
 		startContentWatcher(contentPath)
 	}
+
+	// Build the content
+	initialBuild()
 }
 
 // Starts watching for changes in the content directory.
@@ -71,7 +74,7 @@ func startContentWatcher(contentPath string) {
 }
 
 // Resets the content-build directory and builds all content files.
-func Build() {
+func initialBuild() {
 	// Build the content
 	log.Info().Msg("Building content")
 

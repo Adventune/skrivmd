@@ -45,7 +45,6 @@ func main() {
 	// If build only flag is set, build the content and exit
 	if buildOnly {
 		builder.Init(contentPath, wd, true)
-		builder.Build()
 		log.Info().Msg("Build only flag is set. Exiting...")
 		return
 	}
@@ -56,10 +55,8 @@ func main() {
 	// Serve content build directory
 	http.Handle("/", http.FileServer(http.Dir(builder.CONTENT_BUILD_DIR)))
 
-	// Initial content build
-	builder.Build()
-
 	// Start the server
 	log.Info().Msg("Listening on port 8000")
-	http.ListenAndServe(":8000", nil)
+	err = http.ListenAndServe(":8000", nil)
+	log.Fatal().Err(err).Msg("Failed to start server")
 }
