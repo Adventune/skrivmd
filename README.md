@@ -1,9 +1,10 @@
 # SkrivMD
 
-Markdown-powered static blogging - Written in Golang.
+| :warning: This project is WIP!                           |
+| -------------------------------------------------------- |
+| Any documantation is meant for my personal planning only |
 
-> This project is WORK IN PROGRESS and not usable for now!
-> Any documentation is just for my personal planning.
+Markdown-powered static blogging - Written in Golang.
 
 ## Usage
 
