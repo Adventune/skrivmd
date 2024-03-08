@@ -2,6 +2,9 @@
 
 Markdown-powered static blogging - Written in Golang.
 
+> This project is WORK IN PROGRESS and not usable for now!
+> Any documentation is just for my personal planning.
+
 ## Usage
 
 Download latest release and run the binary.
