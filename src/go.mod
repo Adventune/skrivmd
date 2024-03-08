@@ -1,4 +1,4 @@
-module adventune/blogmark
+module adventune/skrivmd
 
 go 1.22.1
 
