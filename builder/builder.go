@@ -21,6 +21,7 @@ var (
 
 // Initializes the builder.
 // It sets the content path, working directory and starts the content watcher
+// Also builds the content initially.
 func Init(contentPathI, wdI string, noWatch bool) {
 	contentPath = contentPathI
 	wd = wdI
