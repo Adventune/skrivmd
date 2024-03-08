@@ -172,7 +172,6 @@ func mdToHTML(md []byte) []byte {
 }
 
 func buildSingle(path string) {
-	println(path)
 	log.Debug().Str("path", path).Msg("Building a content file")
 	outputDir, err := getBuildPath(path)
 
@@ -258,9 +257,6 @@ func rebuild(event watcher.Event) {
 		}
 
 		newBuildPath, err := getBuildPath(event.Path)
-
-		println(event.OldPath, event.Path, oldBuildPath, newBuildPath)
-
 		if err != nil {
 			log.Error().Err(err).Msg("Failed to get new build path")
 		}
