@@ -127,7 +127,7 @@ func buildSingleContentFile(path string) {
 	}
 
 	// Convert the content to html
-	content = mdToHTML(content)
+	content = render(content)
 
 	// Write the content to the index file
 	_, err = file.Write(content)
